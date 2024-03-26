@@ -1,5 +1,8 @@
 <?php
 
+namespace models\comment;
+use models\AbstractEntityManager;
+
 /**
  * Cette classe sert à gérer les commentaires. 
  */

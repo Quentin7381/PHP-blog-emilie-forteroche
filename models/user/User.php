@@ -1,5 +1,8 @@
 <?php
 
+namespace models\user;
+use models\AbstractEntity;
+
 /**
  * Entité User : un user est défini par son id, un login et un password.
  */ 

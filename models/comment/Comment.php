@@ -1,5 +1,9 @@
 <?php
 
+namespace models\comment;
+use DateTime;
+use models\AbstractEntity;
+
 /**
  * Entité représentant un commentaire.
  * Avec les champs id, pseudo, content, et idArticle.

@@ -1,5 +1,9 @@
 <?php
 
+namespace services;
+use DateTime;
+use IntlDateFormatter;
+
 /**
  * Classe utilitaire : cette classe ne contient que des méthodes statiques qui peuvent être appelées
  * directement sans avoir besoin d'instancier un objet Utils.

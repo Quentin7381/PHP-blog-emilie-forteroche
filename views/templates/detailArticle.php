@@ -3,6 +3,8 @@
      * Ce template affiche un article et ses commentaires.
      * Il affiche également un formulaire pour ajouter un commentaire.
      */
+
+    use services\Utils;
 ?>
 
 <article class="mainArticle">

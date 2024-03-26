@@ -1,5 +1,8 @@
 <?php
 
+namespace views;
+use Exception;
+
 /**
  * Cette classe génère les vues en fonction de ce que chaque contrôlleur lui passe en paramètre. 
  */

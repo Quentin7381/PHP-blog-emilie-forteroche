@@ -1,5 +1,9 @@
 <?php
 
+namespace models\article;
+use DateTime;
+use models\AbstractEntity;
+
 /**
  * Entité Article, un article est défini par les champs
  * id, id_user, title, content, date_creation, date_update

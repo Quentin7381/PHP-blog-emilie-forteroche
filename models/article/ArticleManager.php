@@ -1,9 +1,12 @@
 <?php
 
+namespace models\article;
+use models\AbstractEntityManager;
+
 /**
  * Classe qui gère les articles.
  */
-class ArticleManager extends AbstractEntityManager 
+class ArticleManager extends AbstractEntityManager
 {
     /**
      * Récupère tous les articles.

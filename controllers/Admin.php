@@ -2,8 +2,17 @@
 /**
  * Contrôleur de la partie admin.
  */
+
+namespace controllers;
+
+use Exception;
+use models\article\Article;
+use models\article\ArticleManager;
+use models\user\UserManager;
+use views\View;
+use services\Utils;
  
-class AdminController {
+class Admin {
 
     /**
      * Affiche la page d'administration.

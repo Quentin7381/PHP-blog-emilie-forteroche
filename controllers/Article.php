@@ -1,6 +1,14 @@
 <?php 
 
-class ArticleController 
+namespace controllers;
+
+use Exception;
+use models\article\ArticleManager;
+use models\comment\CommentManager;
+use services\Utils;
+use views\View;
+
+class Article
 {
     /**
      * Affiche la page d'accueil.

@@ -1,6 +1,15 @@
 <?php
 
-class CommentController 
+namespace controllers;
+use services\Utils;
+use Exception;
+
+use models\comment\CommentManager;
+use models\comment\Comment as CommentEntity;
+
+use models\article\ArticleManager;
+
+class Comment
 {
     /**
      * Ajoute un commentaire.
@@ -26,7 +35,7 @@ class CommentController
         }
 
         // On crée l'objet Comment.
-        $comment = new Comment([
+        $comment = new CommentEntity([
             'pseudo' => $pseudo,
             'content' => $content,
             'idArticle' => $idArticle
