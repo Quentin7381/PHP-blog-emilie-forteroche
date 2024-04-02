@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\components\Row;
+use Utils\DBQuery\components\Row;
 
 class RowTest extends AbstractTestComponent {
     protected $targetClass = Row::class;

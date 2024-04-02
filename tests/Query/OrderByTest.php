@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\components\OrderBy;
+use Utils\DBQuery\components\OrderBy;
 
 class OrderByTest extends AbstractTestComponent {
     protected $targetClass = OrderBy::class;

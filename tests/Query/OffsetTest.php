@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\components\Offset;
+use Utils\DBQuery\components\Offset;
 
 class OffsetTest extends AbstractTestComponent {
     protected $targetClass = Offset::class;

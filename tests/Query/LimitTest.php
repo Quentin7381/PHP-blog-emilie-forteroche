@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\components\Limit;
+use Utils\DBQuery\components\Limit;
 
 class LimitTest extends AbstractTestComponent {
     protected $targetClass = Limit::class;

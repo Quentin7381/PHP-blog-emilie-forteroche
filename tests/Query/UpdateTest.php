@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\Update;
-use services\DBQuery\components\Condition;
+use Utils\DBQuery\Update;
+use Utils\DBQuery\components\Condition;
 
 class UpdateTest extends AbstractTestComponent {
     protected $targetClass = Update::class;

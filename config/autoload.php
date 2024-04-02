@@ -1,38 +1,9 @@
 <?php
 
-// /**
-//  * Système d'autoload. 
-//  * A chaque fois que PHP va avoir besoin d'une classe, il va appeler cette fonction 
-//  * et chercher dnas les divers dossiers (ici models, controllers, views, services) s'il trouve 
-//  * un fichier avec le bon nom. Si c'est le cas, il l'inclut avec require_once.
-//  */
-// spl_autoload_register(function($className) {
-//     // On va voir dans le dossier Service si la classe existe.
-//     if (file_exists('services/' . $className . '.php')) {
-//         require_once 'services/' . $className . '.php';
-//     }
-
-//     // On va voir dans le dossier Model si la classe existe.
-//     if (file_exists('models/' . $className . '.php')) {
-//         require_once 'models/' . $className . '.php';
-//     }
-
-//     // On va voir dans le dossier Controller si la classe existe.
-//     if (file_exists('controllers/' . $className . '.php')) {
-//         require_once 'controllers/' . $className . '.php';
-//     }
-
-//     // On va voir dans le dossier View si la classe existe.
-//     if (file_exists('views/' . $className . '.php')) {
-//         require_once 'views/' . $className . '.php';
-//     }
-    
-// });
-
-require_once 'config/Autoloader.php';
-
-$root = realpath(__DIR__ . '/..') . '/';
-new Autoloader($root . 'services/', 'services\\');
-new Autoloader($root . 'models/', 'model\\');
-new Autoloader($root . 'controllers/', 'controller\\');
-new Autoloader($root . 'views/', 'views\\');
+spl_autoload_register(function ($class) {
+    $baseDir = realpath(__DIR__ . '\\..\\src');
+    $path = $baseDir . '\\' . $class . '.php';
+    if(file_exists($path)) {
+        require_once $path;
+    }
+});

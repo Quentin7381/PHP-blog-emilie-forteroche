@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\InsertInto;
-use services\DBQuery\components\Condition;
+use Utils\DBQuery\InsertInto;
+use Utils\DBQuery\components\Condition;
 
 class InsertIntoTest extends AbstractTestComponent {
     protected $targetClass = InsertInto::class;

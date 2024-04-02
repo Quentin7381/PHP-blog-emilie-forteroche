@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\components\Where;
-use services\DBQuery\components\Condition;
+use Utils\DBQuery\components\Where;
+use Utils\DBQuery\components\Condition;
 
 class WhereTest extends AbstractTestComponent {
     protected $targetClass = Where::class;

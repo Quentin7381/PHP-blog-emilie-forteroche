@@ -1,13 +1,14 @@
 <?php
 
 require_once __DIR__.'/config/config.php';
+require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/config/autoload.php';
 
-use services\Utils;
-use controllers\Article as ArticleController;
-use controllers\Comment as CommentController;
-use controllers\Admin as AdminController;
-use views\View;
+use Utils\Utils;
+use Controller\ArticleController as ArticleController;
+use Controller\CommentController as CommentController;
+use Controller\AdminController as AdminController;
+use View\View;
 
 
 // On récupère l'action demandée par l'utilisateur.

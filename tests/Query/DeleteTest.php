@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\Delete;
-use services\DBQuery\components\Condition;
+use Utils\DBQuery\Delete;
+use Utils\DBQuery\components\Condition;
 
 class DeleteTest extends AbstractTestComponent {
     protected $targetClass = Delete::class;

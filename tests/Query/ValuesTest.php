@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\components\Values;
+use Utils\DBQuery\components\Values;
 
 class ValuesTest extends AbstractTestComponent {
     protected $targetClass = Values::class;

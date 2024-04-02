@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../testsInit.php';
 require_once __DIR__ .'/AbstractTestComponent.php';
 
-use services\DBQuery\components\GroupBy;
+use Utils\DBQuery\components\GroupBy;
 
 class GroupByTest extends AbstractTestComponent {
     protected $toStringResult = ' GROUP BY col1, col2';
