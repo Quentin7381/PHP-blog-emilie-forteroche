@@ -24,23 +24,18 @@ class Autoloader {
      */
     public function load($fullClassName): bool{
         // Si le namespace n'est pas bon, return
-        if(!strpos($fullClassName, $this->prefix) === 0){
+        $match = strpos($fullClassName, $this->prefix);
+        if($match === false || $match !== 0){
             return false;
         }
 
         // On retire le namespace racine
-        $fullClassName = substr($fullClassName, strlen($this->prefix));
-
-        // On recupere les sous-espaces et la classe
-        $subSpaces = explode('\\', $fullClassName);
-        $className = array_pop($subSpaces);
-
-        // On construit le chemin du fichier
-        $path = $this->dir . implode(DIRECTORY_SEPARATOR, $subSpaces) . DIRECTORY_SEPARATOR . $className . '.php';
+        $path = substr($fullClassName, strlen($this->prefix));
+        $path = $this->dir . $path;
 
         // On essaye d'inclure le fichier
-        if(file_exists($path)){
-            require_once $path;
+        if(file_exists($path.'.php')){
+            require_once $path.'.php';
             return true;
         } else {
             return false;

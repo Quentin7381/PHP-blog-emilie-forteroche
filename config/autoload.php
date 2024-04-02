@@ -31,7 +31,8 @@
 
 require_once 'config/Autoloader.php';
 
-new Autoloader('services/', 'Service\\');
-new Autoloader('models/', 'Model\\');
-new Autoloader('controllers/', 'Controller\\');
-new Autoloader('views/', 'View\\');
+$root = realpath(__DIR__ . '/..') . '/';
+new Autoloader($root . 'services/', 'services\\');
+new Autoloader($root . 'models/', 'model\\');
+new Autoloader($root . 'controllers/', 'controller\\');
+new Autoloader($root . 'views/', 'views\\');
