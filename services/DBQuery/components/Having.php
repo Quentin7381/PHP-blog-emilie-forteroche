@@ -32,6 +32,9 @@ class Having extends AbstractQuery implements \ArrayAccess{
     }
 
     public function toString(): string {
+        if(empty($this->conditions)){
+            throw new \Exception('conditions property is required');
+        }
         $str = ' HAVING';
         foreach($this->conditions as $key => $condition){
             if(isset($this->junctions[$key])){

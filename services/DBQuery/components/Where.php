@@ -31,6 +31,9 @@ class Where extends AbstractQuery implements \ArrayAccess{
     }
 
     public function toString(): string {
+        if(empty($this->conditions)){
+            throw new \Exception('conditions property is required');
+        }
         $str = ' WHERE';
         foreach($this->conditions as $key => $condition){
             if(isset($this->operators[$key])) $str .= ' ' . $this->operators[$key];

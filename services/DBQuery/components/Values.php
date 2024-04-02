@@ -36,6 +36,9 @@ class Values extends AbstractQuery implements \ArrayAccess {
     }
 
     public function toString(): string{
+        if(empty($this->columns) || empty($this->rows)){
+            throw new \Exception('columns and rows properties are required');
+        }
         $rows = [];
         foreach($this->rows as $row){
             $rows[] = $row->toString();

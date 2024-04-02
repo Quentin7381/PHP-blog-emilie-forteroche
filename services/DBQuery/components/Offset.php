@@ -10,6 +10,9 @@ class OffSet extends AbstractQuery {
     }
     
     public function toString() {
+        if(empty($this->offset)){
+            throw new \Exception('offset property is required');
+        }
         return " OFFSET {$this->offset}";
     }
     

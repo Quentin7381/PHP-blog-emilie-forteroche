@@ -11,6 +11,9 @@ class From extends AbstractQuery{
     }
 
     public function toString(){
+        if(empty($this->from)){
+            throw new \Exception('from property is required');
+        }
         return " FROM {$this->from}";
     }
 

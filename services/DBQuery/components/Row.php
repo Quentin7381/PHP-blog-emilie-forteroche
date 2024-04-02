@@ -53,6 +53,9 @@ class Row extends AbstractQuery implements \ArrayAccess{
 
 
     public function toString(): string{
+        if(empty($this->columns) || empty($this->row)){
+            throw new \Exception('columns and row properties are required');
+        }
         $row = [];
         foreach($this->columns as $column){
             $key = array_search($column, $this->columns);

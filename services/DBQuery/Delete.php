@@ -6,34 +6,32 @@ use services\DBQuery\components\From;
 use services\DBQuery\components\Where;
 
 class Delete extends AbstractQuery {
-    protected From $from;
-    protected Where $where;
+    protected $objectPlaceholders = [
+        'from',
+        'where'
+    ];
+    protected $from;
+    protected $where;
 
     public function __construct($from = '', $where = []) {
-        $this->set_from($from);
-        $this->set_where($where);
+        if(!empty($from)){
+            $this->__set('from', $from);
+        }
+        if(!empty($where)){
+            $this->__set('where', $where);
+        }
     }
     
     public function toString() {
+        if(empty($this->from)){
+            throw new \Exception('from property is required');
+        }
+
         $query = "DELETE";
         $query .= $this->from->toString();
         if ($this->where) {
             $query .= $this->where->toString();
         }
         return $query;
-    }
-
-    public function set_from($from) {
-        if(!$from instanceof From) {
-            $from = new From($from);
-        }
-        $this->from = $from;
-    }
-
-    public function set_where($where) {
-        if(!$where instanceof Where) {
-            $where = new Where($where);
-        }
-        $this->where = $where;
     }
 }

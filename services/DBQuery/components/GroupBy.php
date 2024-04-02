@@ -11,6 +11,9 @@ class GroupBy extends AbstractQuery implements \ArrayAccess {
     }
 
     public function toString() {
+        if(empty($this->columns)){
+            throw new \Exception('columns property is required');
+        }
         return " GROUP BY " . implode(", ", $this->columns);
     }
 

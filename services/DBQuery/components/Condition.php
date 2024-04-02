@@ -15,6 +15,9 @@ class Condition extends AbstractQuery {
     }
 
     public function toString() {
+        if(empty($this->column) || empty($this->value)){
+            throw new \Exception('column and value properties are required');
+        }
         return " {$this->column} {$this->operator} {$this->value}";
     }
 }

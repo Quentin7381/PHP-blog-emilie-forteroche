@@ -15,6 +15,9 @@ class InsertInto extends AbstractQuery implements \ArrayAccess{
     }
 
     public function toString() {
+        if(empty($this->table) || empty($this->values)){
+            throw new \Exception('table and values properties are required');
+        }
         $str = "INSERT INTO {$this->table}";
         $str .= $this->values->toString();
         return $str;

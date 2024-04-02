@@ -10,6 +10,10 @@ class Set extends AbstractQuery implements \ArrayAccess{
     }
 
     public function toString() {
+        if(empty($this->set)){
+            throw new \Exception('set properties are required');
+        }
+
         $set = [];
         foreach($this->set as $column => $value) {
             $set[] = " $column = $value";

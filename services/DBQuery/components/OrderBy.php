@@ -17,6 +17,9 @@ class OrderBy extends AbstractQuery implements \ArrayAccess{
     }
 
     public function toString(): string{
+        if(empty($this->orderBys)){
+            throw new \Exception('orderBys property is required');
+        }
         $orderBys = [];
         foreach($this->orderBys as $column => $direction){
             $orderBys[] = " $column $direction";

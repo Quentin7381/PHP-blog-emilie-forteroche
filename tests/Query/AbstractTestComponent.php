@@ -20,4 +20,11 @@ abstract class AbstractTestComponent extends TestSetup {
     function test__toString__expected(){
         $this->assertEquals($this->toStringResult, $this->target->toString());
     }
+
+    function test__toString__missingValuesThrowError(){
+        $target = new $this->targetClass();
+
+        $this->expectExceptionMessageMatches('/propert(ies|y) (are|is) required/');
+        $target->toString();
+    }
 }

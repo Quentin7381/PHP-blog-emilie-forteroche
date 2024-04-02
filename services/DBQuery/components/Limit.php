@@ -11,6 +11,9 @@ class Limit extends AbstractQuery {
     }
 
     public function toString() {
+        if(empty($this->limit)){
+            throw new \Exception('limit property is required');
+        }
         return " LIMIT {$this->limit}";
     }
 
