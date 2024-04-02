@@ -13,6 +13,10 @@ abstract class AbstractQuery{
         }
         if(in_array($name, $this->objectPlaceholders)){
             $class = $this->getClassName($name);
+            if(empty($value)){
+                $this->$name = null;
+                return;
+            }
             if(!$value instanceof $class){
                 $value = new $class($value);
             }

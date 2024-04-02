@@ -40,4 +40,14 @@ class SelectTest extends AbstractTestComponent {
     function test__toString__spaceBefore(){
         $this->assertTrue(true);
     }
+
+    function test__toString__optionalValues(){
+        $select = new Select();
+        $select->from = 'table';
+
+        $this->toStringResult = 'SELECT * FROM table';
+
+        $expected = 'SELECT * FROM table';
+        $this->assertEquals($expected, $select->toString());
+    }
 }

@@ -56,7 +56,7 @@ class Select extends AbstractQuery{
 
         $result .= $this->from->toString() ?? '';
 
-        $toPrint = [
+        $options = [
             'where',
             'orderBy',
             'limit',
@@ -64,11 +64,9 @@ class Select extends AbstractQuery{
             'groupBy',
             'having'
         ];
-
-        foreach($toPrint as $component) {
-            if(!empty($this->$component)) {
-                $result .= $this->$component->toString();
-            }
+        foreach($options as $component) {
+            if(empty($this->$component)) continue;
+            $result .= $this->$component->toString();
         }
 
         return $result;
