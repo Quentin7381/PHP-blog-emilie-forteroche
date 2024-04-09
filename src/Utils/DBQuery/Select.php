@@ -11,10 +11,23 @@ use Utils\DBQuery\components\Offset;
 use Utils\DBQuery\components\OrderBy;
 use Utils\DBQuery\components\Where;
 
+/**
+ * Requete SQL SELECT
+ *
+ * --- Utilisation
+ * $select->fields = ['column_name', 'column_name'];
+ * $select->from = 'table_name';
+ * $select->where[] = [new Condition('column_name', 'value')];
+ * $select->where[] = [new Condition('column_name', 'value', 'LIKE'), 'OR'];
+ * $select->orderBy[] = ['column_name', 'ASC'];
+ * $select->limit = 10;
+ * $select->offset = 5;
+ * $select->groupBy = ['column_name'];
+ * $select->having[] = [new Condition('column_name', 'value')];
+ * $select->having[] = [new Condition('column_name', 'value', 'LIKE'), 'OR'];
+ */
 class Select extends AbstractQuery{
-
-    protected const COMPONENTS_NAMESPACE = 'Utils\DBQuery\components\\';
-    protected $objectPlaceholders = [
+    protected array $objectPlaceholders = [
         'from',
         'where',
         'orderBy',
@@ -39,23 +52,29 @@ class Select extends AbstractQuery{
         $this->fields = $fields;
     }
 
+    /**
+     * @return string Requête SQL
+     * @throws Exception Si la propriété from est vide
+     */
     public function toString(): string {
-        $result = 'SELECT ';
-
-        if(
-            empty($this->from)
-        ){
+        // Verification des proprietes
+        if(empty($this->from)){
             throw new Exception('from property is required');
         }
 
+        $result = 'SELECT ';
+
+        // Ajout des champs a selectionner
         if(empty($this->fields)) {
             $result .= '*';
         } else {
             $result .= implode(', ', $this->fields) . ' ';
         }
 
+        // Ajout de la table
         $result .= $this->from->toString() ?? '';
 
+        // Ajout des autres composants
         $options = [
             'where',
             'orderBy',
@@ -69,6 +88,7 @@ class Select extends AbstractQuery{
             $result .= $this->$component->toString();
         }
 
+        // Retour du resultat
         return $result;
     }
 }

@@ -13,28 +13,28 @@ class SelectTest extends AbstractTestComponent {
         parent::setUp();
         $this->target->from = 'table';
 
-        $this->target->where[] = [new Condition('a', 1)];
-        $this->target->where[] = [new Condition('b', 2, 'LIKE'), 'OR'];
-        $this->target->where[] = [new Condition('c', 3)];
+        $this->target->where[] = [new Condition('col1', 1)];
+        $this->target->where[] = [new Condition('col2', 2, 'LIKE'), 'OR'];
+        $this->target->where[] = [new Condition('col3', 3)];
 
-        $this->target->orderBy['a'] = 'ASC';
-        $this->target->orderBy['b'] = 'DESC';
+        $this->target->orderBy['col1'] = 'ASC';
+        $this->target->orderBy['col2'] = 'DESC';
 
         $this->target->limit = 10;
         $this->target->offset = 5;
 
-        $this->target->groupBy = ['a', 'b'];
-        $this->target->having = [new Condition('a', 1)];
+        $this->target->groupBy = ['col1', 'col2'];
+        $this->target->having = [new Condition('col1', 1)];
 
         $this->toStringResult =
             'SELECT * ' .
             'FROM table ' .
-            'WHERE a = 1 OR b LIKE 2 AND c = 3 ' .
-            'ORDER BY a ASC, b DESC ' .
+            'WHERE col1 = 1 OR col2 LIKE 2 AND col3 = 3 ' .
+            'ORDER BY col1 ASC, col2 DESC ' .
             'LIMIT 10 ' .
             'OFFSET 5 ' .
-            'GROUP BY a, b ' .
-            'HAVING a = 1';
+            'GROUP BY col1, col2 ' .
+            'HAVING col1 = 1';
     }
 
     function test__toString__spaceBefore(){

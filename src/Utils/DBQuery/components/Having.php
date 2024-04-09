@@ -2,11 +2,33 @@
 
 namespace Utils\DBQuery\components;
 
+/**
+ * Having SQL
+ *
+ * Agregation d'une liste de conditions et de jonctions (AND, OR)
+ */
 class Having extends AbstractQuery implements \ArrayAccess{
     
-    protected $conditions = [];
-    protected $junctions = [];
+    /**
+     * Liste d'objets Condition
+     * Represente les conditions de la requete
+     *
+     * @var array $conditions
+     */
+    protected array $conditions = [];
 
+    /**
+     * Liste des jonctions logiques (AND, OR)
+     * Les jonctions logiques d'index $i sont appliquees avant les conditions d'index $i
+     *
+     * @var array $junctions
+     */
+    protected array $junctions = [];
+
+    /**
+     * Si value est un tableau, on considere que value[0] est la valeur et value[1] est la jonction
+     * Si value[1] n'est pas defini, ou que value n'est pas un tableau on considere que la jonction est 'AND'
+     */
     public function offsetSet($offset, $value): void {
         if($offset === null) $offset = count($this->conditions);
 
@@ -31,6 +53,10 @@ class Having extends AbstractQuery implements \ArrayAccess{
         return [$this->conditions[$offset], $this->junctions[$offset-1] ?? 'AND'];
     }
 
+    /**
+     * @return string Requete SQL
+     * @throws \Exception Si la propriete conditions est vide
+     */
     public function toString(): string {
         if(empty($this->conditions)){
             throw new \Exception('conditions property is required');
@@ -47,6 +73,13 @@ class Having extends AbstractQuery implements \ArrayAccess{
         return $str;
     }
 
+    /**
+     * Constructeur
+     *
+     * @var array $conditions Liste des conditions
+     * Format: ['column' => condition]
+     * OU ['column' => [condition, junction]]
+     */
     public function __construct(array $conditions = []){
         foreach($conditions as $key => $condition){
             $this->offsetSet($key, $condition);

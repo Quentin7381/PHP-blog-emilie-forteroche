@@ -2,14 +2,28 @@
 
 namespace Utils\DBQuery\components;
 
+/**
+ * From SQL
+ *
+ * Agregation d'une table source
+ */
 class From extends AbstractQuery{
 
-    protected $from;
+    protected ?string $from;
 
-    public function __construct($from = null){
+    /**
+     * Constructeur
+     *
+     * @var string $from Table source
+     */
+    public function __construct(?string $from = null){
         $this->from = $from;
     }
 
+    /**
+     * @return string Requete SQL
+     * @throws \Exception Si la propriete from est vide
+     */
     public function toString(){
         if(empty($this->from)){
             throw new \Exception('from property is required');

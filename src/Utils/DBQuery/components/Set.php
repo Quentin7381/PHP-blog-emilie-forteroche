@@ -2,13 +2,22 @@
 
 namespace Utils\DBQuery\components;
 
+/**
+ * Set SQL
+ *
+ * Agregation d'une colonne cible et d'une valeur
+ */
 class Set extends AbstractQuery implements \ArrayAccess{
-    protected array $set;
+    protected array $set = [];
 
-    public function __construct($set = []) {
+    public function __construct(array $set = []) {
         $this->set = $set;
     }
 
+    /**
+     * @return string Requete SQL
+     * @throws \Exception Si la propriete set est vide
+     */
     public function toString() {
         if(empty($this->set)){
             throw new \Exception('set properties are required');

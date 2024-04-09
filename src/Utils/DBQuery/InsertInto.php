@@ -4,16 +4,34 @@ namespace Utils\DBQuery;
 use Utils\DBQuery\components\AbstractQuery;
 use Utils\DBQuery\components\Values;
 
+/**
+ * Requete SQL INSERT INTO
+ *
+ * --- Utilisation
+ * $insert->table = 'table_name';
+ * $insert->values[] = ['column_name' => 'value', 'column_name' => 'value'];
+ * $insert->values[2]['column_name'] = 'value';
+ */
 class InsertInto extends AbstractQuery implements \ArrayAccess{
     
-    protected $table;
-    protected $values = [];
+    protected ?string $table;
+    protected ?Values $values = null;
 
-    public function __construct($table = '', $values = []) {
+    /**
+     * Constructeur
+     *
+     * @param string $table Nom de la table
+     * @param array $values Valeurs à insérer
+     */
+    public function __construct(?string $table = '', array $values = []) {
         $this->table = $table;
         $this->set_values($values);
     }
 
+    /**
+     * @return string Requête SQL
+     * @throws \Exception Si les propriétés table et values sont vides
+     */
     public function toString() {
         if(empty($this->table) || empty($this->values)){
             throw new \Exception('table and values properties are required');
@@ -22,6 +40,8 @@ class InsertInto extends AbstractQuery implements \ArrayAccess{
         $str .= $this->values->toString();
         return $str;
     }
+
+    // ----- ARRAY ACCESS -----
 
     public function offsetExists($offset): bool{
         return isset($this->values[$offset]);
@@ -39,7 +59,17 @@ class InsertInto extends AbstractQuery implements \ArrayAccess{
         unset($this->values[$offset]);
     }
 
-    public function set_values($values) {
+    // ----- SETTERS -----
+
+    /**
+     * Setter de la propriété values
+     * Automatiquement appelé via la methode __set
+     *
+     * @see Values::__construct pour le format des valeurs
+     *
+     * @param string $table Nom de la table
+     */
+    public function set_values(array|Values $values) {
         if(!$values instanceof Values) {
             $values = new Values($values);
         }

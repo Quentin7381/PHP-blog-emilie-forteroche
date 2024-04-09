@@ -5,15 +5,30 @@ use Utils\DBQuery\components\AbstractQuery;
 use Utils\DBQuery\components\From;
 use Utils\DBQuery\components\Where;
 
+/**
+ * Requete SQL DELETE
+ *
+ * --- Utilisation
+ * $delete->from = 'table_name';
+ * $delete->where[] = [new Condition('column_name', 'value')];
+ * $delete->where[] = [new Condition('column_name', 'value', 'LIKE'), 'OR'];
+ * ];
+ */
 class Delete extends AbstractQuery {
-    protected $objectPlaceholders = [
+    protected array $objectPlaceholders = [
         'from',
         'where'
     ];
-    protected $from;
-    protected $where;
+    protected ?From $from;
+    protected ?Where $where;
 
-    public function __construct($from = '', $where = []) {
+    /**
+     * Constructeur
+     *
+     * @param string $from Nom de la table
+     * @param array $where Conditions de suppression
+     */
+    public function __construct(string $from = '', array $where = []) {
         if(!empty($from)){
             $this->__set('from', $from);
         }
@@ -22,6 +37,10 @@ class Delete extends AbstractQuery {
         }
     }
     
+    /**
+     * @return string Requête SQL
+     * @throws \Exception Si la propriété from est vide
+     */
     public function toString() {
         if(empty($this->from)){
             throw new \Exception('from property is required');

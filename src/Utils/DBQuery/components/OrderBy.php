@@ -2,10 +2,20 @@
 
 namespace Utils\DBQuery\components;
 
+/**
+ * OrderBy SQL
+ *
+ * Agregation d'une liste de colonnes et de directions
+ */
 class OrderBy extends AbstractQuery implements \ArrayAccess{
     
-    protected $orderBys = [];
+    protected array $orderBys = [];
 
+    /**
+     * Constructeur
+     *
+     * @var array $orderBys Liste des colonnes utilisees pour le tri
+     */
     public function __construct(array $orderBys = []){
         foreach($orderBys as $key => $direction){
             $this->offsetSet($key, $direction);
@@ -16,6 +26,10 @@ class OrderBy extends AbstractQuery implements \ArrayAccess{
         unset($this->orderBys[$offset]);
     }
 
+    /**
+     * @return string Requete SQL
+     * @throws \Exception Si la propriete orderBys est vide
+     */
     public function toString(): string{
         if(empty($this->orderBys)){
             throw new \Exception('orderBys property is required');
