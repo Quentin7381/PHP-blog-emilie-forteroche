@@ -15,12 +15,7 @@ class CommentController
      * Ajoute un commentaire.
      * @return void
      */
-    public function addComment() : void
-    {
-        // Récupération des données du formulaire.
-        $pseudo = Utils::request("pseudo");
-        $content = Utils::request("content");
-        $idArticle = Utils::request("idArticle");
+    public function addComment($pseudo, $content, $idArticle) : void{
 
         // On vérifie que les données sont valides.
         if (empty($pseudo) || empty($content) || empty($idArticle)) {
@@ -51,6 +46,6 @@ class CommentController
         }
 
         // On redirige vers la page de l'article.
-        Utils::redirect("showArticle", ['id' => $idArticle]);
+        Utils::redirect("article/" . $idArticle);
     }
 }

@@ -14,18 +14,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emilie Forteroche</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="index.php">Articles</a>
-            <a href="index.php?action=apropos">À propos</a>
+            <a href="/">Articles</a>
+            <a href="/apropos">À propos</a>
             <?php 
                 // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
                 if (isset($_SESSION['user'])) {
-                    echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
+                    echo '<a href="/user/disconnect">Déconnexion</a>';
                 }
                 ?>
         </nav>
@@ -37,7 +37,7 @@
     </main>
     
     <footer>
-        <p>Copyright © Emilie Forteroche 2023 - Openclassrooms - <a href="index.php?action=admin">Admin</a>
+        <p>Copyright © Emilie Forteroche 2023 - Openclassrooms - <a href="/admin">Admin</a>
     </footer>
 
 </body>

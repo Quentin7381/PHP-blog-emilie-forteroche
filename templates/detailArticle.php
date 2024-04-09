@@ -40,7 +40,7 @@
         } 
     ?>
 
-    <form action="index.php" method="post" class="foldedCorner">
+    <form action="/comment/add" method="post" class="foldedCorner">
         <h2>Commenter</h2>
 
         <div class="formComment formGrid">
@@ -51,7 +51,7 @@
             <textarea name="content" id="content" required></textarea>
 
             <input type="hidden" name="action" value="addComment">
-            <input type="hidden" name="idArticle" value="<?= $article->getId() ?>">
+            <input type="hidden" name="article_id" value="<?= $article->getId() ?>">
 
             <button class="submit">Ajouter un commentaire</button>
         </div>

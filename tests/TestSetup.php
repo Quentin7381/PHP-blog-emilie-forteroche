@@ -44,6 +44,11 @@ abstract class TestSetup extends PHPUnit\Framework\TestCase{
         }
 
         // create an instance of the class
-        $this->$classKey['instance'] = $this->$classKey['class']->newInstanceWithoutConstructor();
+        try{
+            $this->$classKey['instance'] = $this->$classKey['class']->newInstanceWithoutConstructor();
+        } catch (Throwable $e){
+            $this->$classKey['instance'] = null;
+        }
+        
     }
 }

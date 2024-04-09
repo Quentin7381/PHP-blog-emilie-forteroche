@@ -14,6 +14,10 @@ use Utils\Utils;
  
 class AdminController {
 
+    // ----- ROUTE METHODS -----
+
+
+
     /**
      * Affiche la page d'administration.
      * @return void
@@ -35,25 +39,25 @@ class AdminController {
     }
 
     /**
-     * Vérifie que l'utilisateur est connecté.
-     * @return void
-     */
-    private function checkIfUserIsConnected() : void
-    {
-        // On vérifie que l'utilisateur est connecté.
-        if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
-        }
-    }
-
-    /**
      * Affichage du formulaire de connexion.
      * @return void
      */
-    public function displayConnectionForm() : void 
+    public function connect() : void
     {
         $view = new View("Connexion");
         $view->render("connectionForm");
+    }
+
+    /**
+     * Vérifie que l'utilisateur est connecté.
+     * @return void
+     */
+    public function checkIfUserIsConnected() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("user/connect");
+        }
     }
 
     /**
@@ -102,87 +106,6 @@ class AdminController {
         unset($_SESSION['user']);
 
         // On redirige vers la page d'accueil.
-        Utils::redirect("home");
-    }
-
-    /**
-     * Affichage du formulaire d'ajout d'un article.
-     * @return void
-     */
-    public function showUpdateArticleForm() : void 
-    {
-        $this->checkIfUserIsConnected();
-
-        // On récupère l'id de l'article s'il existe.
-        $id = Utils::request("id", -1);
-
-        // On récupère l'article associé.
-        $articleManager = new ArticleManager();
-        $article = $articleManager->getArticleById($id);
-
-        // Si l'article n'existe pas, on en crée un vide. 
-        if (!$article) {
-            $article = new Article();
-        }
-
-        // On affiche la page de modification de l'article.
-        $view = new View("Edition d'un article");
-        $view->render("updateArticleForm", [
-            'article' => $article
-        ]);
-    }
-
-    /**
-     * Ajout et modification d'un article. 
-     * On sait si un article est ajouté car l'id vaut -1.
-     * @return void
-     */
-    public function updateArticle() : void 
-    {
-        $this->checkIfUserIsConnected();
-
-        // On récupère les données du formulaire.
-        $id = Utils::request("id", -1);
-        $title = Utils::request("title");
-        $content = Utils::request("content");
-
-        // On vérifie que les données sont valides.
-        if (empty($title) || empty($content)) {
-            throw new Exception("Tous les champs sont obligatoires. 2");
-        }
-
-        // On crée l'objet Article.
-        $article = new Article([
-            'id' => $id, // Si l'id vaut -1, l'article sera ajouté. Sinon, il sera modifié.
-            'title' => $title,
-            'content' => $content,
-            'id_user' => $_SESSION['idUser']
-        ]);
-
-        // On ajoute l'article.
-        $articleManager = new ArticleManager();
-        $articleManager->addOrUpdateArticle($article);
-
-        // On redirige vers la page d'administration.
-        Utils::redirect("admin");
-    }
-
-
-    /**
-     * Suppression d'un article.
-     * @return void
-     */
-    public function deleteArticle() : void
-    {
-        $this->checkIfUserIsConnected();
-
-        $id = Utils::request("id", -1);
-
-        // On supprime l'article.
-        $articleManager = new ArticleManager();
-        $articleManager->deleteArticle($id);
-       
-        // On redirige vers la page d'administration.
-        Utils::redirect("admin");
+        Utils::redirect("/");
     }
 }

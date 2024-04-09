@@ -4,7 +4,7 @@
      */
 ?>
 
-<form action="index.php" method="post" class="foldedCorner">
+<form action="/admin/article/<?= $article->getId() == -1 ? "add" : "update" ?>/submit" method="post" class="foldedCorner">
     <h2><?= $article->getId() == -1 ? "Création d'un article" : "Modification de l'article "?></h2>
     <div class="formGrid">
         <label for="title">Titre</label>

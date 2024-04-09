@@ -31,9 +31,13 @@ class Utils {
      * @param array $params : Facultatif, les paramètres de l'action sous la forme ['param1' => 'valeur1', 'param2' => 'valeur2']
      * @return void
      */
-    public static function redirect(string $action, array $params = []) : void
+    public static function redirect(string $url, array $params = []) : void
     {
-        $url = "index.php?action=$action";
+        // Ajout du / si manquant
+        if ($url[0] != '/') {
+            $url = "/$url";
+        }
+        
         foreach ($params as $paramName => $paramValue) {
             $url .= "&$paramName=$paramValue";
         }

@@ -7,6 +7,7 @@ use Manager\ArticleManager;
 use Manager\CommentManager;
 use Utils\Utils;
 use View\View;
+use Entity\Article;
 
 class ArticleController
 {
@@ -27,11 +28,8 @@ class ArticleController
      * Affiche le détail d'un article.
      * @return void
      */
-    public function showArticle() : void
+    public function showArticle(int $id) : void
     {
-        // Récupération de l'id de l'article demandé.
-        $id = Utils::request("id", -1);
-
         $articleManager = new ArticleManager();
         $article = $articleManager->getArticleById($id);
         
@@ -63,5 +61,71 @@ class ArticleController
     public function showApropos() {
         $view = new View("A propos");
         $view->render("apropos");
+    }
+
+    /**
+     * Affichage du formulaire d'ajout d'un article.
+     * @return void
+     */
+    public function showUpdateArticleForm($id = -1) : void{
+
+        // On récupère l'article associé.
+        $articleManager = new ArticleManager();
+        $article = $articleManager->getArticleById($id);
+
+        // Si l'article n'existe pas, on en crée un vide. 
+        if (!$article) {
+            $article = new Article();
+        }
+
+        // On affiche la page de modification de l'article.
+        $view = new View("Edition d'un article");
+        $view->render("updateArticleForm", [
+            'article' => $article
+        ]);
+    }
+
+    /**
+     * Suppression d'un article.
+     * @return void
+     */
+    public function deleteArticle($id) : void
+    {
+        // On supprime l'article.
+        $articleManager = new ArticleManager();
+        $articleManager->deleteArticle($id);
+       
+        // On redirige vers la page d'administration.
+        Utils::redirect("admin");
+    }
+
+    
+
+    /**
+     * Ajout et modification d'un article. 
+     * On sait si un article est ajouté car l'id vaut -1.
+     * @return void
+     */
+    public function updateArticle($title = "", $content = "", $id = -1) : void{
+
+        // On vérifie que les données sont valides.
+        if (empty($title) || empty($content)) {
+            throw new Exception("Tous les champs sont obligatoires. 2");
+        }
+
+        // On crée l'objet Article.
+        $article = new Article([
+            'id' => $id, // Si l'id vaut -1, l'article sera ajouté. Sinon, il sera modifié.
+            'title' => $title,
+            'content' => $content,
+            'id_user' => $_SESSION['idUser']
+        ]);
+
+        // On ajoute l'article.
+        $articleManager = new ArticleManager();
+        $articleManager->addOrUpdateArticle($article);
+
+        // On redirige vers la page d'administration.
+        Utils::redirect("admin");
     }
 }
