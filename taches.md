@@ -32,9 +32,13 @@ Commit associé :
 
 ### Possibilite de tri
 
+Commit associé :
 [BF-3] Tri des articles admin
 
 ### Validite de la mise en forme
+
+Commit associé :
+[BF-4] Formatage de la page admin
 
 #### Adapte 1366px
 

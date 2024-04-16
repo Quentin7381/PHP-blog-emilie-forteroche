@@ -17,6 +17,7 @@
     --headerColor: #d79922;
     --headerPaleColor: #efe1ba;
     --titleColor: #f13c1f;
+    --titleColorPale: #f13c1f;
     --dateColor: #3f56a4;
     --quoteColor: #c5cbe4;
     --commentPaleColor: #99a140;
@@ -303,52 +304,6 @@ a.info {
     font-weight: bold;
 }
 
-/**
- * Partie admin
- */ 
-
-.adminArticle {
-    margin-bottom: 20px;
-    background-color: var(--commentPaleColor);
-    color: white;
-}
-
-.articleLine {
-    display: flex; 
-}
-
-.articleLine div {
-    display: flex;
-    align-items: center;
-}
-
-.articleLine .infos {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 8px;
-    white-space: nowrap;
-}
-
-.articleLine .infos .publication{
-    font-style: italic;
-}
-
-.articleLine .title {
-    font-weight: bold;
-    min-width: 200px;
-    width: 200px;
-}
-
-.articleLine .content {
-    flex-grow: 1;
-}
-
-.articleLine > div {
-    padding: 20px;
-    border: 1px solid var(--backgroundColor);
-}
-
 /** 
  * Footer global de la page.
  */
@@ -361,4 +316,109 @@ footer {
     padding: 20px;
     color: white;
     background-color: var(--headerColor);
+}
+
+/* ----- ADMIN ----- */
+
+/* Bouttons de sort */
+
+.sortArticle {
+    width: 100%;
+}
+
+.sortArticle__form {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    width: 100%;
+    background-color: var(--backgroundColor);
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.sortArticle__submit {
+    background-color: var(--headerColor);
+    border: none;
+    border-radius: 0;
+    padding: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sortArticle__submit.--active{
+    background-color: var(--titleColor);
+}
+
+.sortArticle__submit.--DESC::after {
+    content: " ▼";
+}
+
+.sortArticle__submit.--ASC::after {
+    content: " ▲";
+}
+
+.sortArticle__title {
+    color: var(--commentColor);
+}
+
+/* Tableau des articles */
+
+.adminArticle {
+    margin-bottom: 20px;
+    background-color: var(--commentPaleColor);
+    color: white;
+
+    border-collapse: collapse;
+}
+
+.adminArticle td {
+    padding: 10px;
+    border: 1px solid var(--backgroundColor);
+}
+
+.adminArticle__infos {
+    white-space: nowrap;
+}
+
+.adminArticle__infosPublication{
+    font-style: italic;
+}
+
+.adminArticle__infos .highlight {
+    color: var(--commentColor);
+    font-weight: bold;
+}
+
+.adminArticle__title {
+    font-weight: bold;
+    min-width: 200px;
+    width: 200px;
+}
+
+.adminArticle__actions {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.adminArticle__actionsSubmit {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    background-color: var(--commentColor);
+    font-weight: bold;
+    text-align: center;
+}
+
+.adminArticle__actionsSubmit.delete {
+    background-color: var(--titleColor);
+}
+
+.adminArticle__line--impair {
+    background-color: var(--headerPaleColor);
 }
