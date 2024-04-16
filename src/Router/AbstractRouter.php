@@ -40,7 +40,7 @@ abstract class AbstractRouter{
      * @var bool $debug
      * Active ou desactive l'affichage des informations de debug.
      */
-    protected bool $debug = false;
+    public bool $debug = false;
 
     // ----- CORE FUNCTIONS -----
 

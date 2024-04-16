@@ -2,7 +2,7 @@
 
 namespace Entity;
 
-abstract class AbstractEntity 
+abstract class AbstractEntity
 {
     // Par défaut l'id vaut -1, ce qui permet de vérifier facilement si l'entité est nouvelle ou pas. 
     protected int $id = -1;
@@ -10,13 +10,75 @@ abstract class AbstractEntity
     /**
      * Constructeur de la classe.
      * Si un tableau associatif est passé en paramètre, on hydrate l'entité.
-     * 
+     *
      * @param array $data
      */
     public function __construct(array $data = []) 
     {
         if (!empty($data)) {
             $this->hydrate($data);
+        }
+    }
+
+    // ----- SETTERS & GETTERS DYNAMIQUES -----
+
+    public function __set(string $name, mixed $value) : void
+    {
+        // Priorite au setter custom
+        $setter = 'set'.ucfirst($name);
+        if(method_exists($this, $setter)){
+            $this->{$setter}($value);
+            return;
+        }
+
+        // Setter generique
+        if(property_exists($this, $name)){
+            $this->$name = $value;
+        }
+
+        // var_dump([
+        //     'name' => $name,
+        //     'value' => $value,
+        //     'entity' => get_class($this),
+        //     'trace' => debug_backtrace()
+        // ]);
+
+        // Si la propriete n'existe pas
+        // throw new \Exception("La propriété $name n'existe pas");
+    }
+
+    public function __get(string $name) : mixed
+    {
+        // Priorite au getter custom
+        $getter = 'get'.ucfirst($name);
+        if(method_exists($this, $getter)){
+            return $this->{$getter}();
+        }
+
+        // Getter generique
+        if(property_exists($this, $name)){
+            return $this->$name;
+        }
+
+        // Si la propriete n'existe pas
+        // throw new \Exception("La propriété $name n'existe pas");
+    }
+
+    public function __call(string $name, array $arguments) : mixed
+    {
+        // Reimplementation methodes get
+        if (strpos($name, 'set') === 0) {
+            $property = lcfirst(substr($name, 3));
+
+            // On passe par __set en cas de surcharge generales
+            $this->__set($property, $arguments[0]);
+
+        // Reimplementation methodes set
+        } elseif (strpos($name, 'get') === 0) {
+            $property = lcfirst(substr($name, 3));
+
+            // On passe par __get en cas de surcharge generales
+            return $this->__get($property);
         }
     }
 
@@ -30,14 +92,15 @@ abstract class AbstractEntity
     protected function hydrate(array $data) : void 
     {
         foreach ($data as $key => $value) {
-            $method = 'set' . str_replace('_', '', ucwords($key, '_'));
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
+            // Transformation de la cle db en cle camelCase
+            $key = str_replace('_', '', ucwords($key, '_'));
+            $key = lcfirst($key);
+
+            $this->__set($key, $value);
         }
     }
 
-    /** 
+    /**
      * Setter pour l'id.
      * @param int $id
      * @return void
