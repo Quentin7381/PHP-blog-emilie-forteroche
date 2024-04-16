@@ -5,7 +5,7 @@
     $labels = [
         'title' => 'Titre',
         'date_creation' => 'Date de création',
-        'nb_comment' => 'Nombre de commentaires',
+        'nb_comments' => 'Nombre de commentaires',
         'vues' => 'Nombre de vues'
     ];
     $label = $labels[$sortName] 

@@ -13,7 +13,7 @@
     <!-- <h3 class="sortArticle__title">Trier par : </h3> -->
         <input type="hidden" name="actual_sort" value="<?=$sort['name']?>">
         <input type="hidden" name="actual_direction" value="<?=$sort['direction']?>">
-        <?php foreach(['title', 'date_creation', 'nb_comment', 'vues'] as $sortName) {
+        <?php foreach(['title', 'date_creation', 'nb_comments', 'vues'] as $sortName) {
             include __DIR__ . '/components/admin_sortButton.php';
         } ?>
     </form>

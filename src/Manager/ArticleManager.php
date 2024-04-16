@@ -26,14 +26,13 @@ class ArticleManager extends AbstractEntityManager
     public function getAllArticles($sort = []) : array
     {
         $sql =
-            "SELECT article.*, COUNT(comment.id) as nb_comment
+            "SELECT article.*, COUNT(comment.id) as nb_comments
             FROM article
             LEFT JOIN comment ON article.id = comment.id_article
             GROUP BY article.id";
 
         if(!empty($sort) && isset($sort['name']) && isset($sort['direction'])){
             $sql .= " ORDER BY ".$sort['name']." ".$sort['direction'];
-            var_dump($sql);
         }
 
         $result = $this->db->query($sql);

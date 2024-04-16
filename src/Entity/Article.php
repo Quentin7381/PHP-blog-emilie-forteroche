@@ -2,7 +2,6 @@
 
 namespace Entity;
 use DateTime;
-use Manager\CommentManager;
 
 /**
  * Entité Article, un article est défini par les champs
@@ -14,6 +13,7 @@ use Manager\CommentManager;
     protected int $vues = 0;
     protected string $title = "";
     protected string $content = "";
+    protected int $nbComments = 0;
     protected ?DateTime $dateCreation = null;
     protected ?DateTime $dateUpdate = null;
 
@@ -70,9 +70,9 @@ use Manager\CommentManager;
     /**
      * Raccourcis pour obtenir le nombre de commentaires.
      */
-    public function getNbComments() : int
-    {
-        $commentManager = new CommentManager();
-        return $commentManager->getNbComments($this->id);
-    }
+    // public function getNbComments() : int
+    // {
+    //     $commentManager = new CommentManager();
+    //     return $commentManager->getNbComments($this->id);
+    // }
  }
