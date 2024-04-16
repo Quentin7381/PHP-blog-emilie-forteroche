@@ -127,7 +127,11 @@ class ArticleController
      * On sait si un article est ajouté car l'id vaut -1.
      * @return void
      */
-    public function updateArticle($title = "", $content = "", $id = -1) : void{
+    public function updateArticle() : void{
+        $id = Utils::request("id");
+        $title = Utils::request("title");
+        $content = Utils::request("content");
+        
         // On vérifie que les données sont valides.
         if (empty($title) || empty($content)) {
             throw new Exception("Tous les champs sont obligatoires. 2");

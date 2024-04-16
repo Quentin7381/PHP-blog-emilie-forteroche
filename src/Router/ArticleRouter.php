@@ -43,11 +43,7 @@ class ArticleRouter extends AbstractRouter{
         $controller = new \Controller\ArticleController();
 
         if($id == 'submit'){
-            $controller->updateArticle(
-                $this->post['title'],
-                $this->post['content'],
-                $this->post['id'] ?? -1
-            );
+            $controller->updateArticle();
             return;
         }
 
@@ -67,10 +63,7 @@ class ArticleRouter extends AbstractRouter{
 
         $segment = $this->url[0] ?? null;
         if($segment == 'submit'){
-            $controller->updateArticle(
-                $this->post['title'],
-                $this->post['content']
-            );
+            $controller->updateArticle();
             return;
         }
 
