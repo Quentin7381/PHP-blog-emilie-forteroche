@@ -48,4 +48,19 @@ class CommentController
         // On redirige vers la page de l'article.
         Utils::redirect("article/" . $idArticle);
     }
+
+    /**
+     * Supprime un commentaire.
+     * @return void
+     */
+    public function deleteComment($articleId, $commentId) : void
+    {
+        // On supprime le commentaire.
+        $commentManager = new CommentManager();
+        $comment = $commentManager->getCommentById($commentId);
+        $commentManager->deleteComment($comment);
+       
+        // On redirige vers la page de l'article.
+        Utils::redirect("article/" . $articleId);
+    }
 }

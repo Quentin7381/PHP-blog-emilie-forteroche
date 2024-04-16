@@ -239,7 +239,7 @@ a.info {
 }
 
 
-/* Page de détail d'un article */
+/* ----- ARTICLE ----- */
 
 .mainArticle .footer {
     display: flex;
@@ -247,7 +247,7 @@ a.info {
     align-items: flex-end;
 }
 
-/* Affichage des commentaires */
+/* commentaires */
 .comments {
     width: 100%;
     margin-top: 30px;
@@ -274,6 +274,28 @@ a.info {
     color: var(--quoteColor);
 }
 
+.comments .delete{
+    flex-shrink: 0;
+
+    background-color: var(--titleColor);
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+
+    height: 24px;
+    width: 24px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin: auto 32px auto 0;
+
+    /* compensation line height */
+    padding-bottom: 5px;
+}
+
 /* On redéfinit certaines parties du "info" pour l'affichage dans les commentaires */
 .detailComment .info {
     margin: 5px 0 5px 0;
@@ -284,7 +306,7 @@ a.info {
     margin: 5px 0 5px 0;
 }
 
-/* Page d'erreur */
+/* ----- ERREUR ----- */
 
 .error {
     display: flex;
@@ -304,9 +326,7 @@ a.info {
     font-weight: bold;
 }
 
-/** 
- * Footer global de la page.
- */
+/* ----- GLOBAL ----- */
 footer {
     position: fixed;
     bottom: 0;

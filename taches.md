@@ -45,3 +45,6 @@ Commit associé :
 #### Conforme au style actuel
 
 ## Fonctionnalite suppression commentaire
+
+Commit associé :
+[BF-7] Suppression commentaire

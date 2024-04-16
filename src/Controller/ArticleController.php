@@ -21,7 +21,9 @@ class ArticleController
         $articles = $articleManager->getAllArticles();
 
         $view = new View("Accueil");
-        $view->render("home", ['articles' => $articles]);
+        $view->render("home", [
+            'articles' => $articles
+        ]);
     }
 
     public function articleExists(int $id) : bool
@@ -54,8 +56,15 @@ class ArticleController
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
+        $adminController = new AdminController();
+        $admin = $adminController->isConnected();
+
         $view = new View($article->getTitle());
-        $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);
+        $view->render("detailArticle", [
+            'article' => $article,
+            'comments' => $comments,
+            'admin' => $admin
+        ]);
     }
 
     /**

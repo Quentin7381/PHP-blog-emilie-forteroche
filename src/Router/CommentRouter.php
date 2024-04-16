@@ -19,10 +19,11 @@ class CommentRouter extends AbstractRouter {
         );
     }
 
-    // public function delete(){
-    //     $controller = new \Controller\CommentController();
-    //     $controller->deleteComment(
-    //         $this->url[0]
-    //     );
-    // }
+    public function delete(){
+        $controller = new \Controller\CommentController();
+        $controller->deleteComment(
+            $this->url[0],
+            $this->url[1]
+        );
+    }
 }

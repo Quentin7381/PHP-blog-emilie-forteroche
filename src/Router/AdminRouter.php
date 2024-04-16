@@ -19,4 +19,12 @@ class AdminRouter extends AbstractRouter {
         $router = new ArticleRouter($this);
         $router->__ROUTE__();
     }
+
+    /**
+     * Appelle le router des commentaires.
+     */
+    public function comment(){
+        $router = new CommentRouter($this);
+        $router->__ROUTE__();
+    }
 }
