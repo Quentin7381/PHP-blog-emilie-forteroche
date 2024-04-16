@@ -85,7 +85,7 @@ abstract class AbstractQuery{
      * @param string $key Nom de la propriete
      * @return string Nom de la classe
      */
-    public function buildClassName(string $key){
+    private function buildClassName(string $key){
         $key = ucfirst($key);
         return 'Utils\DBQuery\components\\'.$key;
     }

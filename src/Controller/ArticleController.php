@@ -99,15 +99,12 @@ class ArticleController
         Utils::redirect("admin");
     }
 
-    
-
     /**
-     * Ajout et modification d'un article. 
+     * Ajout et modification d'un article.
      * On sait si un article est ajouté car l'id vaut -1.
      * @return void
      */
     public function updateArticle($title = "", $content = "", $id = -1) : void{
-
         // On vérifie que les données sont valides.
         if (empty($title) || empty($content)) {
             throw new Exception("Tous les champs sont obligatoires. 2");

@@ -16,8 +16,6 @@ class AdminController {
 
     // ----- ROUTE METHODS -----
 
-
-
     /**
      * Affiche la page d'administration.
      * @return void
@@ -64,7 +62,7 @@ class AdminController {
      * Connexion de l'utilisateur.
      * @return void
      */
-    public function connectUser() : void 
+    public function connectUser() : void
     {
         // On récupère les données du formulaire.
         $login = Utils::request("login");

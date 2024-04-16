@@ -55,8 +55,7 @@ abstract class Router{
             self::__DECOMPOSE__($url);
         }
 
-        $previousClass = (isset($this->__PREVIOUS__)) ? $this->__PREVIOUS__::class : null;
-
+        // $previousClass = (isset($this->__PREVIOUS__)) ? $this->__PREVIOUS__::class : null;
         // var_dump([
         //     'router' => static::class,
         //     'previous' => $previousClass,
