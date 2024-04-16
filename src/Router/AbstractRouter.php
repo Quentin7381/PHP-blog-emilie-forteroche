@@ -34,7 +34,7 @@ abstract class AbstractRouter{
      * @var AbstractRouter $__PREVIOUS__
      * Contient le router precedent.
      */
-    protected ?AbstractRouter $__PREVIOUS__;
+    protected ?AbstractRouter $previous;
 
     /**
      * @var bool $debug
@@ -50,10 +50,10 @@ abstract class AbstractRouter{
      * Router precedent. Sera utilise pour la recuperation des proprietes.
      */
     final public function __construct(?AbstractRouter $previous = null){
-        $this->__PREVIOUS__ = $previous;
+        $this->previous = $previous;
 
         foreach($previous ?? [] as $key => $value){
-            if($key == '__PREVIOUS__'){continue;}
+            if($key == 'previous'){continue;}
             $this->$key = $value;
         }
     }
@@ -100,11 +100,11 @@ abstract class AbstractRouter{
      * Si le segment actuel est vide, la methode _index est appelee.
      * Sinon, la methode _404 est appelee.
      *
-     * @param array $url
+     * @param string $url
      * Tableau contenant les differents segments de l'url.
      * Utilise seulement lors de l'appel du premier router.
      */
-    final public function __ROUTE__(array $url = null) : void{
+    final public function __ROUTE__(string $url = null) : void{
         // Decomposition de l'url
         if($url !== null) {
             self::__DECOMPOSE__($url);
@@ -112,7 +112,7 @@ abstract class AbstractRouter{
 
         // Affichage des informations de debug
         if($this->debug){
-            $previousClass = (isset($this->__PREVIOUS__)) ? $this->__PREVIOUS__::class : null;
+            $previousClass = (isset($this->previous)) ? $this->previous::class : null;
             var_dump([
                 'router' => static::class,
                 'previous' => $previousClass,

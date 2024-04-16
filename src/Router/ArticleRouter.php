@@ -18,7 +18,7 @@ class ArticleRouter extends AbstractRouter{
      * Sinon, affiche une erreur 404.
      */
     public function _404(){
-        $id = $this->oldUrl ?? -1;
+        $id = $this->previous->url[0] ?? -1;
 
         $controller = new \Controller\ArticleController();
         try{
@@ -33,7 +33,7 @@ class ArticleRouter extends AbstractRouter{
      * Appelle la methode de mise a jour d'un article ou affiche le formulaire de mise a jour.
      */
     public function update(){
-        if(!$this->__PREVIOUS__ instanceof AdminRouter){
+        if(!$this->previous instanceof AdminRouter){
             $this->_403();
             return;
         }
@@ -58,7 +58,7 @@ class ArticleRouter extends AbstractRouter{
      * Appelle la methode d'ajout d'un article ou affiche le formulaire d'ajout.
      */
     public function add(){
-        if(!$this->__PREVIOUS__ instanceof AdminRouter){
+        if(!$this->previous instanceof AdminRouter){
             $this->_403();
             return;
         }
@@ -82,7 +82,7 @@ class ArticleRouter extends AbstractRouter{
      * L'id est le segment suivant de l'url.
      */
     public function delete(){
-        if(!$this->__PREVIOUS__ instanceof AdminRouter){
+        if(!$this->previous instanceof AdminRouter){
             $this->_403();
             return;
         }
