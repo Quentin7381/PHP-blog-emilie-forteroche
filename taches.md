@@ -48,3 +48,12 @@ Commit associé :
 
 Commit associé :
 [BF-7] Suppression commentaire
+
+# Taches qui n'etaient pas a realiser
+
+## Creer un generateur de requetes SQL
+
+## Creer un routeur
+
+## Structurer le projet en Symfony(ish)
+
