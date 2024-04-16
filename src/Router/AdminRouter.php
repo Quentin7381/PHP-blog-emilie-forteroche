@@ -2,15 +2,21 @@
 
 namespace Router;
 
-class AdminRouter extends Router {
+class AdminRouter extends AbstractRouter {
         
-        public function _index(){
-            $controller = new \Controller\AdminController();
-            $controller->showAdmin();
-        }
+    /**
+     * Affiche la page d'accueil de l'admin.
+     */
+    public function _index(){
+        $controller = new \Controller\AdminController();
+        $controller->showAdmin();
+    }
 
-        public function article(){
-            $router = new ArticleRouter($this);
-            $router->__ROUTE__();
-        }
+    /**
+     * Appelle le router des articles.
+     */
+    public function article(){
+        $router = new ArticleRouter($this);
+        $router->__ROUTE__();
+    }
 }

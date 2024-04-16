@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../testsInit.php';
 
 class RouteTest extends TestSetup{
-    protected $targetClass = router\Router::class;
+    protected $targetClass = router\AbstractRouter::class;
     protected $target;
 
     public function test__decompose(){
@@ -23,4 +23,4 @@ class RouteTest extends TestSetup{
 
 }
 
-class RouterExtension extends router\Router{}
+class RouterExtension extends router\AbstractRouter{}
