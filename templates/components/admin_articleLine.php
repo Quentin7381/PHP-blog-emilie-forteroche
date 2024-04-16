@@ -1,15 +1,15 @@
 <?php
     use Utils\Utils;
     
-    $i = $i ?? 0;
-    $impairClass = ($i%2 == 0) ? "--impair" : "";
+    $i = $i ?? 1;
+    $pairClass = ($i%2 == 0) ? "--pair" : "";
     ++$i;
 
     $date = Utils::convertDateToFrenchFormat($article->dateCreation);
     $confirm = Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?");
 ?>
 
-<tr class="adminArticle__line">
+<tr class="adminArticle__line <?=$pairClass?>">
     <td class="adminArticle__title"><?= $article->getTitle() ?></td>
     <td class="adminArticle__content"><?= $article->getContent(200) ?></td>
     <td class="adminArticle__infos">

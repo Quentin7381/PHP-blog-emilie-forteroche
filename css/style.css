@@ -20,6 +20,7 @@
     --titleColorPale: #f13c1f;
     --dateColor: #3f56a4;
     --quoteColor: #c5cbe4;
+    --commentPaleColor2: #7A8033;
     --commentPaleColor: #99a140;
     --commentColor: #255E33;
 }
@@ -439,6 +440,6 @@ footer {
     background-color: var(--titleColor);
 }
 
-.adminArticle__line--impair {
-    background-color: var(--headerPaleColor);
+.adminArticle__line.--pair {
+    background-color: var(--headerColor);
 }
