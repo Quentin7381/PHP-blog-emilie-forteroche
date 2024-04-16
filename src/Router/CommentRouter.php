@@ -20,6 +20,11 @@ class CommentRouter extends AbstractRouter {
     }
 
     public function delete(){
+        if(!$this->previous instanceof AdminRouter){
+            $this->_403();
+            return;
+        }
+
         $controller = new \Controller\CommentController();
         $controller->deleteComment(
             $this->url[0],
