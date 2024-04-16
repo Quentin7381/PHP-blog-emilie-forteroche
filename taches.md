@@ -32,6 +32,8 @@ Commit associé :
 
 ### Possibilite de tri
 
+[BF-3] Tri des articles admin
+
 ### Validite de la mise en forme
 
 #### Adapte 1366px

@@ -25,14 +25,27 @@ class AdminController {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
+        // On récupère le tri demandé.
+        $sort = [
+            'name' => Utils::request("sort") ?? "date_creation",
+            'direction' => "DESC"
+        ];
+
+        // On inverse la direction si le tri est le même que le tri actuel.
+        if($sort['name'] == Utils::request("actual_sort")){
+            $sort['direction'] = Utils::request("actual_direction");
+            $sort['direction'] = $sort['direction'] == "ASC" ? "DESC" : "ASC";
+        }
+
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles();
+        $articles = $articleManager->getAllArticles($sort);
 
         // On affiche la page d'administration.
         $view = new View("Administration");
         $view->render("admin", [
-            'articles' => $articles
+            'articles' => $articles,
+            'sort' => $sort,
         ]);
     }
 

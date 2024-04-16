@@ -23,9 +23,19 @@ class ArticleManager extends AbstractEntityManager
      * Récupère tous les articles.
      * @return array : un tableau d'objets Article.
      */
-    public function getAllArticles() : array
+    public function getAllArticles($sort = []) : array
     {
-        $sql = "SELECT * FROM article";
+        $sql =
+            "SELECT article.*, COUNT(comment.id) as nb_comment
+            FROM article
+            LEFT JOIN comment ON article.id = comment.id_article
+            GROUP BY article.id";
+
+        if(!empty($sort) && isset($sort['name']) && isset($sort['direction'])){
+            $sql .= " ORDER BY ".$sort['name']." ".$sort['direction'];
+            var_dump($sql);
+        }
+
         $result = $this->db->query($sql);
         $articles = [];
 
