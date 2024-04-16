@@ -14,9 +14,11 @@ $url = $_SERVER['REQUEST_URI'];
 // Try catch global pour gérer les erreurs
 try {
     $router = new IndexRouter();
+    // $router->debug = true;
     $router->__ROUTE__($url, $_GET);
 } catch (Exception $e) {
     // En cas d'erreur, on affiche la page d'erreur.
-    $errorView = new View\View('Erreur');
-    $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
+    // $errorView = new View\View('Erreur');
+    // $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
+    throw $e;
 }

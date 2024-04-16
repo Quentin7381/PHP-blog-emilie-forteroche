@@ -26,6 +26,14 @@ class CommentManager extends AbstractEntityManager
         return $comments;
     }
 
+    public function getNbComments(int $idArticle) : int
+    {
+        $sql = "SELECT COUNT(*) as nb FROM comment WHERE id_article = :idArticle";
+        $result = $this->db->query($sql, ['idArticle' => $idArticle]);
+        $nb = $result->fetch();
+        return $nb['nb'];
+    }
+
     /**
      * Récupère un commentaire par son id.
      * @param int $id : l'id du commentaire.

@@ -10,6 +10,16 @@ use Entity\Article;
 class ArticleManager extends AbstractEntityManager
 {
     /**
+     * Ajoute une vue a l'article
+     * @param int $id : l'id de l'article.
+     */
+    public function addView(int $id) : void
+    {
+        $sql = "UPDATE article SET vues = vues + 1 WHERE id = :id";
+        $this->db->query($sql, ['id' => $id]);
+    }
+
+    /**
      * Récupère tous les articles.
      * @return array : un tableau d'objets Article.
      */
@@ -47,7 +57,7 @@ class ArticleManager extends AbstractEntityManager
      * @param Article $article : l'article à ajouter ou modifier.
      * @return void
      */
-    public function addOrUpdateArticle(Article $article) : void 
+    public function addOrUpdateArticle(Article $article) : void
     {
         if ($article->getId() == -1) {
             $this->addArticle($article);

@@ -36,13 +36,6 @@ abstract class AbstractEntity
             $this->$name = $value;
         }
 
-        // var_dump([
-        //     'name' => $name,
-        //     'value' => $value,
-        //     'entity' => get_class($this),
-        //     'trace' => debug_backtrace()
-        // ]);
-
         // Si la propriete n'existe pas
         // throw new \Exception("La propriété $name n'existe pas");
     }
@@ -61,7 +54,7 @@ abstract class AbstractEntity
         }
 
         // Si la propriete n'existe pas
-        // throw new \Exception("La propriété $name n'existe pas");
+        throw new \Exception("La propriété $name n'existe pas");
     }
 
     public function __call(string $name, array $arguments) : mixed

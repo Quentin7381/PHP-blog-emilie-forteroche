@@ -24,12 +24,26 @@ class ArticleController
         $view->render("home", ['articles' => $articles]);
     }
 
+    public function articleExists(int $id) : bool
+    {
+        $articleManager = new ArticleManager();
+        $article = $articleManager->getArticleById($id);
+        return $article !== null;
+    }
+
     /**
      * Affiche le détail d'un article.
      * @return void
      */
     public function showArticle(int $id) : void
     {
+        // Ajout d'une vue si l'utilisateur n'est pas l'admin.
+        $adminController = new AdminController();
+        if(!$adminController->isConnected()){
+            $articleManager = new ArticleManager();
+            $articleManager->addView($id);
+        }
+
         $articleManager = new ArticleManager();
         $article = $articleManager->getArticleById($id);
         
@@ -111,6 +125,7 @@ class ArticleController
         }
 
         // On crée l'objet Article.
+
         $article = new Article([
             'id' => $id, // Si l'id vaut -1, l'article sera ajouté. Sinon, il sera modifié.
             'title' => $title,

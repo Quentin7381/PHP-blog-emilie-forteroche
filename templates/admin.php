@@ -1,10 +1,12 @@
-<?php 
-    /** 
+<?php
+    /**
      * Affichage de la partie admin : liste des articles avec un bouton "modifier" pour chacun. 
      * Et un formulaire pour ajouter un article.
      */
 
     use Utils\Utils;
+    use Controller\CommentController;
+    $commentController = new CommentController();
 ?>
 
 <h2>Edition des articles</h2>
@@ -14,6 +16,11 @@
         <div class="articleLine">
             <div class="title"><?= $article->getTitle() ?></div>
             <div class="content"><?= $article->getContent(200) ?></div>
+            <div class="infos">
+                <p><?= $article->vues ?> vues</p>
+                <p><?= $article->nbComments ?> commentaires</p>
+                <p class="publication"><?= Utils::convertDateToFrenchFormat($article->dateCreation)?></p>
+            </div>
             <div><a class="submit" href="/admin/article/update/<?= $article->getId() ?>">Modifier</a></div>
             <div><a class="submit" href="/admin/article/delete/<?= $article->getId() ?>" <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?> >Supprimer</a></div>
         </div>

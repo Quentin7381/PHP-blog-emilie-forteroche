@@ -322,6 +322,18 @@ a.info {
     align-items: center;
 }
 
+.articleLine .infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.articleLine .infos .publication{
+    font-style: italic;
+}
+
 .articleLine .title {
     font-weight: bold;
     min-width: 200px;

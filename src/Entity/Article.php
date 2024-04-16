@@ -2,6 +2,7 @@
 
 namespace Entity;
 use DateTime;
+use Manager\CommentManager;
 
 /**
  * Entité Article, un article est défini par les champs
@@ -10,7 +11,7 @@ use DateTime;
  class Article extends AbstractEntity
  {
     protected int $idUser;
-    protected int $views = 0;
+    protected int $vues = 0;
     protected string $title = "";
     protected string $content = "";
     protected ?DateTime $dateCreation = null;
@@ -64,5 +65,14 @@ use DateTime;
             $dateUpdate = DateTime::createFromFormat($format, $dateUpdate);
         }
         $this->dateUpdate = $dateUpdate;
+    }
+
+    /**
+     * Raccourcis pour obtenir le nombre de commentaires.
+     */
+    public function getNbComments() : int
+    {
+        $commentManager = new CommentManager();
+        return $commentManager->getNbComments($this->id);
     }
  }

@@ -58,6 +58,11 @@ class AdminController {
         }
     }
 
+    public function isConnected() : bool
+    {
+        return isset($_SESSION['user']);
+    }
+
     /**
      * Connexion de l'utilisateur.
      * @return void

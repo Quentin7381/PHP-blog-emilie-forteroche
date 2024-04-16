@@ -21,11 +21,11 @@ class ArticleRouter extends AbstractRouter{
         $id = $this->previous->url[0] ?? -1;
 
         $controller = new \Controller\ArticleController();
-        try{
+        if($controller->articleExists($id)){
             $controller->showArticle($id);
-        }
-        catch(\Throwable $e){
-            parent::_404();
+            return;
+        } else {
+            $this->_404();
         }
     }
 
