@@ -41,7 +41,7 @@ class ArticleController
     {
         // Ajout d'une vue si l'utilisateur n'est pas l'admin.
         $adminController = new AdminController();
-        if(!$adminController->isConnected()){
+        if(!$adminController->isAdmin()){
             $articleManager = new ArticleManager();
             $articleManager->addView($id);
         }
@@ -57,7 +57,7 @@ class ArticleController
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
         $adminController = new AdminController();
-        $admin = $adminController->isConnected();
+        $admin = $adminController->isAdmin();
 
         $view = new View($article->getTitle());
         $view->render("detailArticle", [

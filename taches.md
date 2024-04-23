@@ -56,4 +56,3 @@ Commit associé :
 ## Creer un routeur
 
 ## Structurer le projet en Symfony(ish)
-

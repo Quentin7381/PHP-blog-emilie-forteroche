@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Contrôleur de la partie admin.
  */
@@ -71,7 +71,7 @@ class AdminController {
         }
     }
 
-    public function isConnected() : bool
+    public function isAdmin() : bool
     {
         return isset($_SESSION['user']);
     }
