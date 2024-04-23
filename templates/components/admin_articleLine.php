@@ -10,12 +10,14 @@
 ?>
 
 <tr class="adminArticle__line <?=$pairClass?>">
-    <td class="adminArticle__title"><?= $article->getTitle() ?></td>
+    <td>
+        <p class="adminArticle__title"><?=$article->getTitle()?></p>
+        <p class="adminArticle__date"><?=$date?></p>
+    </td>
     <td class="adminArticle__content"><?= $article->getContent(200) ?></td>
     <td class="adminArticle__infos">
         <p><span class="highlight"><?= $article->vues ?></span> vues</p>
         <p><span class="highlight"><?= $article->nbComments ?></span> commentaires</p>
-        <p class="adminArticle__InfosPublication"><?= $date ?></p>
     </td>
     <td>
         <div class="adminArticle__actions">

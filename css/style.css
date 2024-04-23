@@ -437,7 +437,8 @@ footer {
     white-space: nowrap;
 }
 
-.adminArticle__infosPublication{
+.adminArticle__date{
+    margin-top: 8px;
     font-style: italic;
 }
 
