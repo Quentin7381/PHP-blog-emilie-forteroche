@@ -18,7 +18,7 @@ try {
     $router->__ROUTE__($url, $_GET);
 } catch (Exception $e) {
     // En cas d'erreur, on affiche la page d'erreur.
-    // $errorView = new View\View('Erreur');
-    // $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
-    throw $e;
+    $errorView = new View\View('Erreur');
+    $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
+    // throw $e;
 }

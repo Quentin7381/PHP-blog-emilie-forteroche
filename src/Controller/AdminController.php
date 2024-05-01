@@ -88,7 +88,7 @@ class AdminController {
 
         // On vérifie que les données sont valides.
         if (empty($login) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+            throw new Exception("Tous les champs sont obligatoires.");
         }
 
         // On vérifie que l'utilisateur existe.

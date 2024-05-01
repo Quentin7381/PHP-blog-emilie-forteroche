@@ -2,6 +2,8 @@
 
 namespace Router;
 
+use View\View;
+
 /**
  * Classe chargee de router les urls.
  *
@@ -140,10 +142,10 @@ abstract class AbstractRouter{
     public function _index(){}
 
     public function _404(){
-        echo '<h1>404 : Unknown</h1>';
+        throw new \Exception('404 : Not Found');
     }
 
     public function _403(){
-        echo '<h1>403 : Forbidden</h1>';
+        throw new \Exception('403 : Forbidden');
     }
 }
